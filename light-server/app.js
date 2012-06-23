@@ -43,7 +43,7 @@ app.get('/console', function(req,res){
     http.request( {
                     host:"https://api.singly.com"
                   , path:"/oauth/access_token"
-                  , method:"POST",
+                  , method:"POST"
                   , body:
                     {
                       client_id:"7fafda85f20c24466098d291fc23b92c"
