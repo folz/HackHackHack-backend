@@ -1,5 +1,8 @@
 *.py[co]
 
+# Virtualenv
+venv/
+
 # Packages
 *.egg
 *.egg-info
