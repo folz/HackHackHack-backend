@@ -65,12 +65,12 @@ app.get('/console', function(req,res){
 			    console.log('Response: ' + data);
 				  });	
 
-  	}
+  	});
 
   	// write parameters to post body
  	post_req.write(post_data);
- 	post_req.end();
-
+ 		post_req.end();
+  }
 });
 
 app.listen(3000, function(){
