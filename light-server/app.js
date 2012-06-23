@@ -40,21 +40,37 @@ app.get('/console', function(req,res){
   }
   if(code){
     console.log("Alright, got some auth code from singly. Gonna do an oauth post now.");
-    http.request( {
-                    host:"https://api.singly.com"
-                  , path:"/oauth/access_token"
-                  , method:"POST"
-                  , body:
-                    {
-                      client_id:"7fafda85f20c24466098d291fc23b92c"
-                    , client_secret:"2b8818ce59d77540098f31e763b9f312"
-                    , code:code
-                    }
-                  },function(res){
-                  // what do we do with the response??
-                  });
+	var http = require('http');
+	var querystring = require('querystring');
 
-  }
+	var post_data = querystring.stringify({
+	      "client_id":"7fafda85f20c24466098d291fc23b92c"
+	    , "client_secret":"2b8818ce59d77540098f31e763b9f312"
+	    , "code":code
+	});
+	
+    var postOptions = {
+                    host:"https://api.singly.com"
+                  , port: 443
+				  , path:"/oauth/access_token"
+                  , method:"POST"
+				  , headers: {
+				  		'Content-Type': 'application/json'
+				  }
+				};
+		
+	var post_req = http.request(post_options, function(res) {
+	  res.setEncoding('utf8');
+	    res.on('data', function (data) {
+			    console.log('Response: ' + data);
+				  });	
+
+  	}
+
+  	// write parameters to post body
+ 	post_req.write(post_data);
+ 	post_req.end();
+
 });
 
 app.listen(3000, function(){
