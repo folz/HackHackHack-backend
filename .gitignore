@@ -3,6 +3,7 @@ settings.py
 
 # Virtualenv
 venv/
+node_modules/
 
 # Packages
 *.egg
