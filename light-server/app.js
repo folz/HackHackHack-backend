@@ -38,6 +38,20 @@ app.get('/console', function(req,res){
     console.log(error);
     res.send("There was an error. See server logs");
   }
+  if(code){
+    console.log("Alright, got some auth code from singly. Gonna do an oauth post now.");
+    http.request( {
+                    host:"https://api.singly.com"
+                  , path:"/oauth/access_token"
+                  , method:"POST"
+                  , client_id:""
+                  , client_secret:""
+                  , code:code
+                  },function(res){
+                  // what do we do with the response??
+                  });
+
+  }
 });
 
 app.listen(3000, function(){
